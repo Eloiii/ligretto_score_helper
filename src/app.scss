@@ -1,0 +1,7 @@
+$semantic-root-element: "#pico-root";
+
+#main {
+  padding-top: calc(var(--block-spacing-vertical) + 3.5rem);
+}
+
+@import "@picocss/pico/scss/pico";
