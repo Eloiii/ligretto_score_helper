@@ -1,5 +1,6 @@
 <script lang="ts">
     import '../app.scss'
+
     import {onMount} from 'svelte';
     import {firebaseAPP, initialize} from '$lib/firebase';
 
@@ -25,7 +26,11 @@
 
 <nav id="mainNav">
     <ul>
-        <li><strong>Ligretto</strong></li>
+        <li>
+            <a href="/">
+                <strong>
+                    Ligretto
+                </strong></a></li>
     </ul>
 </nav>
 

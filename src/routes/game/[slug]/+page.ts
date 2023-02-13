@@ -2,6 +2,8 @@ import {error} from '@sveltejs/kit';
 import type {PageServerLoad} from './$types';
 import {getGame} from "$lib/firebase";
 
+export const ssr = false;
+export const prerender = false;
 export const load = (async ({params}) => {
     const post = await getGame(params.slug);
 
