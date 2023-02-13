@@ -30,7 +30,9 @@
             <a href="/">
                 <strong>
                     Ligretto
-                </strong></a></li>
+                </strong>
+            </a>
+        </li>
     </ul>
 </nav>
 
