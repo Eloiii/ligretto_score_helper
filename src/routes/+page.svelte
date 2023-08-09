@@ -4,6 +4,7 @@
     import {goto} from "$app/navigation";
 
     let nplaying = 1
+    let requiredNPlayers = 2
     let currentPlayer = ""
     let players = []
     let creatingGame = false
@@ -49,19 +50,29 @@
     {#if nplaying > 1}
         <hr/>
         <section>
-            <h3>
-                Joueurs
-            </h3>
+            <hgroup>
+                <h3>
+                    Joueurs
+                </h3>
+                <h5>
+                    Cliquer sur un joueur pour le retirer de la partie
+                </h5>
+                {#if nplaying - 1 < requiredNPlayers}
+                    <h6>
+                        Encore {requiredNPlayers - nplaying + 1} personne pour lancer une partie
+                    </h6>
+                {/if}
+            </hgroup>
             <ul>
                 {#each players as player}
                     <li>
-                        <a on:click={removePlayer(player)}>{player}</a>
+                        <a class="removable" on:click={removePlayer(player)}>{player}</a>
                     </li>
                 {/each}
             </ul>
         </section>
     {/if}
-    {#if nplaying > 2}
+    {#if nplaying > requiredNPlayers}
         <hr/>
         <section>
             <h2>

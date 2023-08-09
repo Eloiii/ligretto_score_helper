@@ -28,7 +28,8 @@
     }
 
     async function updateScore() {
-        if (isNaN(currentPlayerScore) || !currentPlayerScore)
+        console.log(currentPlayerScore)
+        if (isNaN(currentPlayerScore) || (!currentPlayerScore && currentPlayerScore !== 0))
             return
         gameData.scores[currentPlayerForm].score.push(currentPlayerScore)
         gameData = gameData
@@ -47,40 +48,42 @@
             <h2>
                 Classement
             </h2>
-            <table role="grid">
-                <thead>
-                <tr>
-                    <th scope="col">Manche</th>
-                    {#each gameData.scores as player}
-                        <th scope="col">{player.name}</th>
-                    {/each}
-                </tr>
-                </thead>
-                <tbody>
-                {#each Array(gameData.currentRound) as _, round}
+            <figure>
+                <table role="grid">
+                    <thead>
                     <tr>
-                        <th scope="row">{round + 1}</th>
+                        <th scope="col">Manche</th>
+                        {#each gameData.scores as player}
+                            <th scope="col">{player.name}</th>
+                        {/each}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {#each Array(gameData.currentRound) as _, round}
+                        <tr>
+                            <th scope="row">{round + 1}</th>
+                            {#each gameData.scores as player, index}
+                                <td>
+                                    {player.score[round]}
+                                </td>
+                            {/each}
+                        </tr>
+                    {/each}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th scope="col">Total</th>
                         {#each gameData.scores as player, index}
                             <td>
-                                {player.score[round]}
+                                <strong>
+                                    {player.score.reduce((partialSum, a) => partialSum + a, 0)}
+                                </strong>
                             </td>
                         {/each}
                     </tr>
-                {/each}
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th scope="col">Total</th>
-                    {#each gameData.scores as player, index}
-                        <td>
-                            <strong>
-                                {player.score.reduce((partialSum, a) => partialSum + a, 0)}
-                            </strong>
-                        </td>
-                    {/each}
-                </tr>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
+            </figure>
         </article>
         <article>
             <h2>

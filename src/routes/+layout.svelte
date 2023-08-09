@@ -29,7 +29,7 @@
         <li>
             <a href="/">
                 <strong>
-                    Ligretto
+                    Compteur de score
                 </strong>
             </a>
         </li>
